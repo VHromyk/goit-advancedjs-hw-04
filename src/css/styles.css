@@ -234,3 +234,33 @@ img {
 .load-more-btn.is-hidden {
   display: none;
 }
+
+.gallery-item {
+  position: relative;
+}
+
+.info-block {
+  position: absolute;
+  background-color: #d5f4e7;
+  bottom: 8px;
+  display: flex;
+  padding: 8px;
+  border-radius: 8px;
+  left: 8px;
+  right: 8px;
+  gap: 2px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.info-block li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  align-items: center;
+  font-size: 12px;
+}
+
+.info-block li span:first-child {
+  font-weight: 700;
+}

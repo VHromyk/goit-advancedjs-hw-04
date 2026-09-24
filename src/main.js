@@ -27,7 +27,7 @@ formRef.addEventListener('submit', async e => {
 
   const formData = new FormData(formRef);
   const newQuery = formData.get('search-text').trim();
-  if (!newQuery || newQuery === query) return;
+  if (!newQuery) return;
 
   query = newQuery;
   formRef.reset();
@@ -67,6 +67,9 @@ formRef.addEventListener('submit', async e => {
 });
 
 loadMoreBtn.addEventListener('click', async () => {
+  hideLoadMoreButton();
+  showLoader();
+
   try {
     const resp = await getImagesByQuery({ query, page });
 
@@ -80,10 +83,13 @@ loadMoreBtn.addEventListener('click', async () => {
     page += 1;
 
     if (loadedCount >= resp.totalHits) {
-      hideLoadMoreButton();
       showToast("We're sorry, but you've reached the end of search results.", 'yellow');
+    } else {
+      showLoadMoreButton();
     }
   } catch (error) {
     showToast(error.message, 'red');
+  } finally {
+    hideLoader();
   }
 });
